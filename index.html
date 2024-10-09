@@ -15,35 +15,61 @@
         <script src="vega_lite_vis.js"></script>
         <title>Life Expectancy in Malaysia</title>
         <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                min-height: 100vh;
+                box-sizing: border-box;
+            }
+
             h1 {
                 padding-top: 10px;
-                font-size: 24px;
+                font-size: 22px;
                 margin: 0;
                 text-align: center;
             }
 
             .subheading {
-                font-size: 16px;
+                font-size: 14px;
                 color: #555;
                 text-align: center;
+                margin-bottom: 15px;
             }
 
             .hint {
-                font-size: 12px;
+                font-size: 10px;
                 color: #555;
                 font-style: italic;
-                text-align: start;
                 margin-left: -65px;
             }
 
             .chart {
-                margin-left: -100px;
-                margin-bottom: 0;
-                margin-right: 20px;
+                margin-top: 20px;
+                margin-left: -30px;
+                width: 100%;
             }
 
-            .container {
-                margin-bottom: 20px;
+            .story-section {
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+                background-color: #fbfbfb;
+            }
+
+            .story-title {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 8px;
+            }
+
+            .story-content {
+                font-size: 12px;
+                color: #333;
+                line-height: 1.4;
             }
         </style>
     </head>
@@ -53,20 +79,41 @@
             <p class="subheading">These figures indicate how long a baby newly born in the reference year is expected to live for.</p>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div style="width: 100%" class="col-md-7 chart" id="map_chart"></div>
-                <div style="width: 100%" class="col-md-2 chart" id="heat_map_chart"></div>
+        <div class="container story-section">
+            <div class="story-title">Understanding Life Expectancy</div>
+            <div class="story-content">
+                <p>Life expectancy is a crucial indicator of a population's health and well-being. It reflects the average number of years a newborn is expected to live. In this dashboard, we explore the trends of life expectancy in Malaysia over the years, revealing insights into health disparities among different ethnic groups.</p>
             </div>
         </div>
 
         <div class="container">
-            <div style="width: 100%" class="chart" id="bar_chart0"></div>
-            <div style="width: 100%" class="chart" id="bar_chart1"></div>
+            <div class="row">
+                <div class="col-md-7 chart" id="map_chart"></div>
+                <div class="col-md-5 chart" id="heat_map_chart"></div>
+            </div>
+        </div>
+
+        <div class="container story-section">
+            <div class="story-title">Geographical Insights</div>
+            <div class="story-content">
+                <p>The map visualizes life expectancy across different states in Malaysia. Notice the variations in life expectancy that highlight health inequalities based on geography. The heat map complements this by showing how factors like socioeconomic status and healthcare access impact longevity.</p>
+            </div>
         </div>
 
         <div class="container">
-            <div style="width: 100%" class="chart" id="line_chart"></div>
+            <div class="chart" id="bar_chart0"></div>
+            <div class="chart" id="bar_chart1"></div>
+        </div>
+
+        <div class="container story-section">
+            <div class="story-title">Comparing Genders and States</div>
+            <div class="story-content">
+                <p>The bar charts reveal life expectancy variations between genders across different states in Malaysia. These differences reflect the social conditions prevalent in each state, such as access to healthcare, educational opportunities, and economic stability.</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="chart" id="line_chart"></div>
             <p class="hint">✨ Tip: Click on any ethnicity in the legend to highlight its life expectancy</p>
         </div>
     </body>
