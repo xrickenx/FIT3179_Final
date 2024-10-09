@@ -1,0 +1,79 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Overall (across all sex and ethnic groups)",
+        "fontSize": 18,
+        "anchor": "middle"
+    },
+    "width": "container",
+    "height": 400,
+    "projection": {
+        "type": "mercator"
+    },
+
+    "layer": [
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/refs/heads/master/public/data/malaysia-states.topojson",
+                "format": {
+                    "type": "topojson",
+                    "feature": "states"
+                }
+            },
+            "transform": [
+                {
+                    "lookup": "properties.Name",
+                    "from": {
+                        "data": {
+                            "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/f0908f0babbcb06d5a8f5ddc59779e393d2e93f4/live_expectancy_2022_by_state.csv",
+                            "format": {
+                                "type": "csv"
+                            }
+                        },
+                        "key": "STATE",
+                        "fields": [
+                            "LIFE EXPECTANCY",
+                            "YEAR"
+                        ]
+                    }
+                },
+                {
+                    "filter": "datum['YEAR'] == 2022"
+                }
+            ],
+            "mark": {
+                "type": "geoshape"
+            },
+            "encoding": {
+                "color": {
+                    "field": "LIFE EXPECTANCY",
+                    "type": "quantitative",
+                    "scale": {
+                        "domain": [
+                            70,
+                            80
+                        ],
+                        "scheme": "blues"
+                    },
+                    "legend": {
+                        "title": "Life Expectancy"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "properties.Name",
+                        "title": "State"
+                    },
+                    {
+                        "field": "LIFE EXPECTANCY",
+                        "title": "Life Expectancy"
+                    },
+                    {
+                        "field": "YEAR",
+                        "title": "Year"
+                    }
+                ]
+            }
+        }
+    ]
+}

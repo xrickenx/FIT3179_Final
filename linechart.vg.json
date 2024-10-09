@@ -1,0 +1,89 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Life expectancy by sex and ethnic groups",
+        "fontSize": 18,
+        "anchor": "middle"
+    },
+    "width": "container",
+    "height": 500,
+    "data": {
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/5d788642e2d41e6187ed8c072f0bd988297e7189/live_expectancy_by_sex_ethnic.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "facet": {
+        "field": "SEX",
+        "type": "nominal"
+    },
+    "spec": {
+        "mark": "line",
+        "params": [
+            {
+                "name": "ethnicHighlight",
+                "select": {
+                    "type": "point",
+                    "fields": [
+                        "ETHNIC"
+                    ]
+                },
+                "bind": "legend"
+            }
+        ],
+        "transform": [
+            {
+                "filter": {
+                    "field": "YEAR",
+                    "range": [
+                        2004,
+                        2022
+                    ]
+                }
+            }
+        ],
+        "encoding": {
+            "x": {
+                "field": "YEAR",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            "y": {
+                "field": "LIFE EXPECTANCY",
+                "type": "quantitative",
+                "axis": {
+                    "title": "Life Expectancy (years)"
+                }
+            },
+            "color": {
+                "field": "ETHNIC",
+                "type": "nominal",
+                "legend": {
+                    "title": "Ethnicity",
+                    "orient": "bottom"
+                }
+            },
+            "opacity": {
+                "condition": {
+                    "param": "ethnicHighlight",
+                    "value": 1
+                },
+                "value": 0.1
+            },
+            "tooltip": [
+                {
+                    "field": "YEAR",
+                    "title": "Year"
+                },
+                {
+                    "field": "LIFE EXPECTANCY",
+                    "title": "Life Expectancy"
+                },
+                {
+                    "field": "ETHNIC",
+                    "title": "Ethnicity"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "A summary of life expectancy by sex and ethnic group",
+        "fontSize": 18,
+        "anchor": "middle"
+    },
+    "width": 400,
+    "height": 400,
+    "data": {
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/722b84fa04454a957a70dd6317d4f9128a406ef2/live_expectancy_by_sex_ethnic.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "filter": {
+                "field": "YEAR",
+                "range": [
+                    2016,
+                    2022
+                ]
+            }
+        },
+        {
+            "calculate": "datum['SEX'] + ' (' + datum['ETHNIC'] + ')'",
+            "as": "GenderEthnicity"
+        },
+        {
+            "aggregate": [
+                {
+                    "op": "mean",
+                    "field": "LIFE EXPECTANCY",
+                    "as": "avg_life_expectancy"
+                }
+            ],
+            "groupby": [
+                "YEAR",
+                "GenderEthnicity"
+            ]
+        }
+    ],
+    "mark": "rect",
+    "encoding": {
+        "x": {
+            "field": "YEAR",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "GenderEthnicity",
+            "type": "nominal",
+            "title": "Gender and Ethnicity"
+        },
+        "color": {
+            "field": "avg_life_expectancy",
+            "type": "quantitative",
+            "title": "Average Life Expectancy",
+            "scale": {
+                "domain": [
+                    70,
+                    80
+                ],
+                "scheme": "blues"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "YEAR",
+                "title": "Year"
+            },
+            {
+                "field": "GenderEthnicity",
+                "title": "Gender and Ethnicity"
+            },
+            {
+                "field": "avg_life_expectancy",
+                "title": "Average Life Expectancy"
+            }
+        ]
+    }
+}

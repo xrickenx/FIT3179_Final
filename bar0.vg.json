@@ -1,0 +1,67 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Life expectancy by sex and states",
+        "fontSize": 18,
+        "anchor": "middle"
+    },
+    "width": 130,
+    "height": 100,
+    "data": {
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/722b84fa04454a957a70dd6317d4f9128a406ef2/live_expectancy_by_sex_state_0-6.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "YEAR",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "LIFE EXPECTANCY",
+            "type": "quantitative",
+            "title": "Life Expectancy"
+        },
+        "color": {
+            "field": "SEX",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Male",
+                    "Female"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            },
+            "title": "Sex"
+        },
+        "column": {
+            "field": "STATE",
+            "type": "nominal",
+            "title": "State"
+        },
+        "tooltip": [
+            {
+                "field": "STATE",
+                "title": "State"
+            },
+            {
+                "field": "SEX",
+                "title": "Sex"
+            },
+            {
+                "field": "LIFE EXPECTANCY",
+                "title": "Life Expectancy"
+            },
+            {
+                "field": "YEAR",
+                "title": "Year"
+            }
+        ]
+    }
+}
