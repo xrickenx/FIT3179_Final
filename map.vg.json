@@ -10,19 +10,24 @@
     "width": "container",
     "height": 400,
     "data": {
-        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/352536ea5e6f495ea19248d0d869f0be75da2dbb/live_expectancy_by_state.csv",
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/be4e70ed64002e400f2e484238b1f5fcfcefca9b/live_expectancy_by_state.csv",
         "format": {
             "type": "csv"
+        }
+    },
+    "config": {
+        "view": {
+            "stroke": null
         }
     },
     "params": [
         {
             "name": "selectedYear",
-            "value": 2016,
+            "value": 2022,
             "bind": {
                 "input": "range",
                 "min": 2016,
-                "max": 2021,
+                "max": 2022,
                 "step": 1,
                 "name": "Select the year:"
             }
@@ -72,7 +77,10 @@
                             70,
                             80
                         ],
-                        "scheme": "blues"
+                        "range": [
+                            "#add8e6",
+                            "#00008b"
+                        ]
                     },
                     "legend": {
                         "title": "Life Expectancy"
@@ -99,7 +107,7 @@
                 "type": "text",
                 "align": "center",
                 "baseline": "middle",
-                "fontSize": 5,
+                "fontSize": 7,
                 "color": "white"
             },
             "encoding": {

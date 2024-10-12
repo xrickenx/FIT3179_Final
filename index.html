@@ -9,10 +9,10 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Vegalite -->
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-        <script src="vega_lite_vis.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+
         <title>Life Expectancy in Malaysia</title>
         <style>
             body {
@@ -25,54 +25,64 @@
             }
 
             h1 {
+                margin: 0;
                 padding-top: 10px;
                 font-size: 22px;
-                margin: 0;
                 text-align: center;
             }
 
             .subheading {
-                font-size: 14px;
-                color: #555;
-                text-align: center;
                 margin-bottom: 15px;
+                color: #555;
+                font-size: 14px;
+                text-align: center;
             }
 
             .hint {
-                font-size: 10px;
+                margin-left: 40px;
                 color: #555;
+                font-size: 10px;
                 font-style: italic;
-                margin-left: -65px;
             }
 
             .chart {
-                margin-top: 20px;
-                margin-left: -30px;
                 width: 100%;
             }
 
             .story-section {
+                margin-bottom: 10px;
                 font-family: "Georgia", "Times New Roman", serif;
-                text-align: center;
                 border: 1px solid #ddd;
                 border-radius: 10px;
                 box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-                margin-bottom: 30px;
                 background-color: #fbfbfb;
             }
 
             .story-title {
-                font-family: 'Georgia', 'Times New Roman', serif;
-                font-size: 16px;
+                font-size: 20px;
                 font-weight: bold;
+                margin-top: 8px;
                 margin-bottom: 8px;
+                text-align: center;
             }
 
             .story-content {
-                font-family: 'Georgia', 'Times New Roman', serif;
-                font-size: 12px;
                 color: #333;
-                line-height: 1.4;
+                font-size: 14px;
+                line-height: 1.25;
+            }
+
+            .highlight {
+                color: #ff5733; /* Red */
+            }
+
+            .emphasis {
+                color: #007bff; /* Blue */
+                font-weight: bold;
+            }
+
+            .container {
+                margin-bottom: 50px;
             }
         </style>
     </head>
@@ -90,16 +100,47 @@
         </div>
 
         <div class="container">
+            <div class="chart" id="map_chart"></div>
+        </div>
+
+        <div class="container">
             <div class="row">
-                <div class="col-md-7 chart" id="map_chart"></div>
-                <div class="col-md-5 chart" id="heat_map_chart"></div>
+                <div class="col-md-7">
+                    <div class="chart" id="heat_map_chart"></div>
+                </div>
+                <div class="col-md-5 story-section">
+                    <div class="story-title">Demographic Insights</div>
+                    <div class="story-content">
+                        <p>Prior to 2019, life expectancy had shown a steady increase for most ethnic groups, indicating overall improvements in healthcare and living conditions in Malaysia. However, the COVID-19 pandemic had a significant impact on life expectancy, with most groups experiencing a decline in 2020 and 2021.</p>
+
+                        <p><span class="emphasis">Chinese males</span> and <span class="emphasis">females</span> consistently had the highest life expectancy, with Chinese females peaking at <span class="highlight">80.4 years in 2019</span> and Chinese males reaching <span class="highlight">75.2 years</span> the same year. However, both groups experienced a decline after the pandemic, with females dropping to <span class="highlight">79.4 years</span> and males to <span class="highlight">73.5 years by 2022</span>.</p>
+
+                        <p><span class="emphasis">Indian males</span> and <span class="emphasis">females</span> were the hardest hit, showing significant drops. Indian males' life expectancy fell from <span class="highlight">68.4 years in 2019</span> to <span class="highlight">66.3 years in 2022</span>, while Indian females dropped from <span class="highlight">76.1 years in 2019</span> to <span class="highlight">73.2 years by 2022</span>, indicating a sustained impact on this group. Similarly, <span class="emphasis">Malay males</span> and <span class="emphasis">females</span> saw declines, with male life expectancy peaking at <span class="highlight">71.5 years in 2020–2021</span> before falling to <span class="highlight">70.4 years in 2022</span>, and female life expectancy dropping below <span class="highlight">75 years by 2022</span>.</p>
+
+                        <p><span class="emphasis">Other Bumiputera males</span> and <span class="emphasis">females</span> also faced downward trends, with males' life expectancy dipping from <span class="highlight">72.3 years in 2019–2020 to 71.0 years by 2022</span>, and females following a similar pattern. Conversely, <span class="emphasis">non-citizens</span> displayed more resilience, especially males who reached a high of <span class="highlight">80.2 years in 2020</span>, though this fell to <span class="highlight">76.4 years in 2022</span>, while females also showed fluctuations but maintained a comparatively higher life expectancy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <div class="form-group">
+                    <label> <input type="checkbox" id="toggle-line-chart" checked /> Show Line Chart </label>
+                </div>
+                <div id="line-chart-ctn">
+                    <div class="chart" id="line_chart"></div>
+                    <p class="hint">✨ Tip: Click on any ethnicity in the legend to highlight its life expectancy</p>
+                </div>
             </div>
         </div>
 
         <div class="container story-section">
-            <div class="story-title">Geographical Insights</div>
+            <div class="story-title">Sex and State Dynamics</div>
             <div class="story-content">
-                <p>The map visualizes life expectancy across different states in Malaysia. Notice the variations in life expectancy that highlight health inequalities based on geography. The heat map complements this by showing how factors like socioeconomic status and healthcare access impact longevity.</p>
+                <p>Across the country, <span class="emphasis">females</span> consistently enjoyed higher life expectancies than <span class="emphasis">males</span>, a trend that holds true in every state. For instance, <span class="emphasis">Kuala Lumpur's women</span> led the pack with a remarkable <span class="highlight">79.0 years</span> in <span class="highlight">2016</span>, though this figure slipped to <span class="highlight">76.6 years</span> by <span class="highlight">2022</span>. This decline mirrors a broader national trend, where life expectancy for females decreased in many states, such as <span class="emphasis">Johor</span>, which fell from <span class="highlight">76.9 years</span> in <span class="highlight">2016</span> to <span class="highlight">75.4 years</span> in <span class="highlight">2022</span>.</p>
+
+                <p><span class="emphasis">Males</span>, too, experienced varying fortunes across the states. While <span class="emphasis">Sarawak men</span> had a relatively high life expectancy of <span class="highlight">74.5 years</span> in <span class="highlight">2016</span>, they saw a decline to <span class="highlight">72.1 years</span> by <span class="highlight">2022</span>. Meanwhile, <span class="emphasis">Kedah</span> faced significant challenges, with <span class="emphasis">male</span> life expectancy dropping from <span class="highlight">70.2 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.6 years</span> in <span class="highlight">2022</span>, signaling troubling health trends in the state.</p>
+
+                <p>Despite the overall higher life expectancy for females, the data reveals a concerning pattern of decline across many states. The <span class="emphasis">Pahang</span> and <span class="emphasis">Kelantan</span> regions saw similar trends, with <span class="emphasis">both genders</span> reporting reductions in life expectancy. Notably, the steady decline in states like <span class="emphasis">Kelantan</span>—where <span>males</span> dropped from <span class="highlight">69.0 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.7 years</span> in <span class="highlight">2022</span>—highlights the urgent need for targeted health initiatives.</p>
             </div>
         </div>
 
@@ -107,19 +148,9 @@
             <div class="chart" id="bar_chart0"></div>
             <div class="chart" id="bar_chart1"></div>
         </div>
-
-        <div class="container story-section">
-            <div class="story-title">Comparing Genders and States</div>
-            <div class="story-content">
-                <p>The bar charts reveal life expectancy variations between genders across different states in Malaysia. These differences reflect the social conditions prevalent in each state, such as access to healthcare, educational opportunities, and economic stability.</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="chart" id="line_chart"></div>
-            <p class="hint">✨ Tip: Click on any ethnicity in the legend to highlight its life expectancy</p>
-        </div>
     </body>
+
+    <script src="vega_lite_vis.js"></script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

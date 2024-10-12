@@ -1,24 +1,35 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Life expectancy by sex and ethnic groups",
+        "text": "Life Expectancy by Sex and Ethnic Groups",
         "fontSize": 18,
         "anchor": "middle"
     },
     "width": "container",
-    "height": 500,
+    "height": 250,
     "data": {
-        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/352536ea5e6f495ea19248d0d869f0be75da2dbb/live_expectancy_by_sex_ethnic.csv",
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/be4e70ed64002e400f2e484238b1f5fcfcefca9b/live_expectancy_by_sex_ethnic.csv",
         "format": {
             "type": "csv"
         }
     },
+    "transform": [
+        {
+            "filter": {
+                "field": "YEAR",
+                "range": [
+                    2006,
+                    2022
+                ]
+            }
+        }
+    ],
     "facet": {
         "field": "SEX",
-        "type": "nominal"
+        "type": "nominal",
+        "title": null
     },
     "spec": {
-        "mark": "line",
         "params": [
             {
                 "name": "ethnicHighlight",
@@ -31,17 +42,10 @@
                 "bind": "legend"
             }
         ],
-        "transform": [
-            {
-                "filter": {
-                    "field": "YEAR",
-                    "range": [
-                        2004,
-                        2022
-                    ]
-                }
-            }
-        ],
+        "mark": {
+            "type": "line",
+            "point": true
+        },
         "encoding": {
             "x": {
                 "field": "YEAR",
@@ -68,7 +72,7 @@
                     "param": "ethnicHighlight",
                     "value": 1
                 },
-                "value": 0.1
+                "value": 0.2
             },
             "tooltip": [
                 {
@@ -82,6 +86,10 @@
                 {
                     "field": "ETHNIC",
                     "title": "Ethnicity"
+                },
+                {
+                    "field": "SEX",
+                    "title": "Sex"
                 }
             ]
         }

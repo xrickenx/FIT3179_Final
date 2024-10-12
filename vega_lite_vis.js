@@ -1,10 +1,22 @@
+const lineChartCtnElement = document.getElementById("line-chart-ctn");
+
 function loadCharts(chartMappings) {
     chartMappings.forEach((mapping) => {
         const { jsonName, divId } = mapping; // Destructure mapping object
 
-        vegaEmbed(divId, jsonName)
+        vegaEmbed(divId, jsonName, {
+            actions: false,
+        })
             .then(function (result) {
                 console.log(`Chart loaded in ${divId}`); // Success message
+
+                const checkbox = document.getElementById("toggle-line-chart");
+                console.log("Checkbox:", checkbox);
+
+                // Add a listener for checkbox change
+                checkbox.addEventListener("change", function () {
+                    lineChartCtnElement.style.display = checkbox.checked ? "block" : "none";
+                });
             })
             .catch((error) => {
                 console.error(`Error loading chart in ${divId}:`, error);
