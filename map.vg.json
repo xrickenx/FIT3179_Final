@@ -1,46 +1,65 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Overall (across all sex and ethnic groups)",
+        "text": {
+            "signal": "'Overall (across all sex and ethnic groups) in year ' + selectedYear"
+        },
         "fontSize": 18,
         "anchor": "middle"
     },
     "width": "container",
     "height": 400,
+    "data": {
+        "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/352536ea5e6f495ea19248d0d869f0be75da2dbb/live_expectancy_by_state.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "params": [
+        {
+            "name": "selectedYear",
+            "value": 2016,
+            "bind": {
+                "input": "range",
+                "min": 2016,
+                "max": 2021,
+                "step": 1,
+                "name": "Select the year:"
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "year(datum.YEAR) == selectedYear"
+        },
+        {
+            "lookup": "STATE",
+            "from": {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/refs/heads/master/public/data/malaysia-states.topojson",
+                    "format": {
+                        "type": "topojson",
+                        "feature": "states"
+                    }
+                },
+                "key": "properties.Name",
+                "fields": [
+                    "properties",
+                    "type",
+                    "geometry"
+                ]
+            }
+        },
+        {
+            "calculate": "geoCentroid(null, datum.geometry)",
+            "as": "centroid"
+        }
+    ],
     "projection": {
         "type": "mercator"
     },
-
     "layer": [
         {
-            "data": {
-                "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/refs/heads/master/public/data/malaysia-states.topojson",
-                "format": {
-                    "type": "topojson",
-                    "feature": "states"
-                }
-            },
-            "transform": [
-                {
-                    "lookup": "properties.Name",
-                    "from": {
-                        "data": {
-                            "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/f0908f0babbcb06d5a8f5ddc59779e393d2e93f4/live_expectancy_2022_by_state.csv",
-                            "format": {
-                                "type": "csv"
-                            }
-                        },
-                        "key": "STATE",
-                        "fields": [
-                            "LIFE EXPECTANCY",
-                            "YEAR"
-                        ]
-                    }
-                },
-                {
-                    "filter": "datum['YEAR'] == 2022"
-                }
-            ],
             "mark": {
                 "type": "geoshape"
             },
@@ -73,6 +92,26 @@
                         "title": "Year"
                     }
                 ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "fontSize": 5,
+                "color": "white"
+            },
+            "encoding": {
+                "longitude": {
+                    "field": "centroid[0]"
+                },
+                "latitude": {
+                    "field": "centroid[1]"
+                },
+                "text": {
+                    "field": "properties.Name"
+                }
             }
         }
     ]
