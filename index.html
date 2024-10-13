@@ -73,17 +73,33 @@
                 line-height: 1.25;
             }
 
-            .highlight {
-                color: #ff5733; /* Red */
+            .emphasis {
+                font-weight: bold;
             }
 
-            .emphasis {
-                color: #007bff; /* Blue */
-                font-weight: bold;
+            .color-blue {
+                color: #1f77b4;
+            }
+
+            .color-red {
+                color: #e45756;
             }
 
             .container {
                 margin-bottom: 50px;
+            }
+
+            .first-cap {
+                font-size: 20px;
+            font-style: italic;
+            }
+
+            .italic {
+                font-style: italic;
+            }
+
+            .highlight {
+                font-weight: bold;
             }
         </style>
     </head>
@@ -107,18 +123,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <div class="chart" id="heat_map_chart" style="margin-top: 12px;"></div>
+                    <div class="chart" id="heat_map_chart" style="margin-top: 12px"></div>
                 </div>
                 <div class="col-md-5 story-section">
                     <div class="story-title">Demographic Insights</div>
                     <div class="story-content">
-                        <p>Prior to 2019, life expectancy had shown a steady increase for most ethnic groups, indicating overall improvements in healthcare and living conditions in Malaysia. However, the COVID-19 pandemic had a significant impact on life expectancy, with most groups experiencing a decline in 2020 and 2021.</p>
+                        <p><span class="first-cap">P</span>rior to <span class="emphasis">2019</span>, life expectancy had shown a steady increase for most ethnic groups, indicating overall improvements in healthcare and living conditions in Malaysia. However, the COVID-19 pandemic had a significant impact on life expectancy, with most groups experiencing a decline in <span class="emphasis">2020</span> and <span class="emphasis">2021</span>.</p>
 
-                        <p><span class="emphasis">Chinese males</span> and <span class="emphasis">females</span> consistently had the highest life expectancy, with Chinese females peaking at <span class="highlight">80.4 years in 2019</span> and Chinese males reaching <span class="highlight">75.2 years</span> the same year. However, both groups experienced a decline after the pandemic, with females dropping to <span class="highlight">79.4 years</span> and males to <span class="highlight">73.5 years by 2022</span>.</p>
+                        <p>Chinese males and females consistently had the highest life expectancy, with <span class="italic">Chinese</span> <span class="color-red">females</span> peaking at <span class="highlight">80.4 years</span> in <span class="highlight">2019</span> and <span class="italic">Chinese</span> <span class="color-blue">males</span> reaching <span class="highlight">75.2 years</span> the same year. However, both groups experienced a decline after the pandemic, with <span class="color-red">females</span> dropping to <span class="highlight">79.4 years</span> and <span class="color-blue">males</span> to <span class="highlight">73.5 years</span> by <span class="highlight">2022</span>.</p>
 
-                        <p><span class="emphasis">Indian males</span> and <span class="emphasis">females</span> were the hardest hit, showing significant drops. Indian males' life expectancy fell from <span class="highlight">68.4 years in 2019</span> to <span class="highlight">66.3 years in 2022</span>, while Indian females dropped from <span class="highlight">76.1 years in 2019</span> to <span class="highlight">73.2 years by 2022</span>, indicating a sustained impact on this group. Similarly, <span class="emphasis">Malay males</span> and <span class="emphasis">females</span> saw declines, with male life expectancy peaking at <span class="highlight">71.5 years in 2020–2021</span> before falling to <span class="highlight">70.4 years in 2022</span>, and female life expectancy dropping below <span class="highlight">75 years by 2022</span>.</p>
+                        <p>Indian males and females were the hardest hit, showing significant drops. <span class="italic">Indian</span> <span class="color-blue">males</span>' life expectancy fell from <span class="highlight">68.4 years</span> in <span class="highlight">2019</span> to <span class="highlight">66.3 years</span> in <span class="highlight">2022</span>, while <span class="italic">Indian</span> <span class="color-red">females</span> dropped from <span class="highlight">76.1 years in 2019</span> to <span class="highlight">73.2 years</span> by <span class="highlight">2022</span>, indicating a sustained impact on this group. Similarly, <span class="italic">Malay</span> males and females saw declines, with <span class="color-blue">male</span> life expectancy peaking at <span class="highlight">71.5 years</span> in <span class="highlight">2020–2021</span> before falling to <span class="highlight">70.4 years</span> in <span class="highlight">2022</span>, and <span class="color-red">female</span> life expectancy dropping below <span class="highlight">75 years</span> by <span class="highlight">2022</span>.</p>
 
-                        <p><span class="emphasis">Other Bumiputera males</span> and <span class="emphasis">females</span> also faced downward trends, with males' life expectancy dipping from <span class="highlight">72.3 years in 2019–2020 to 71.0 years by 2022</span>, and females following a similar pattern. Conversely, <span class="emphasis">non-citizens</span> displayed more resilience, especially males who reached a high of <span class="highlight">80.2 years in 2020</span>, though this fell to <span class="highlight">76.4 years in 2022</span>, while females also showed fluctuations but maintained a comparatively higher life expectancy.</p>
+                        <p>Other <span class="italic">Bumiputera</span> males and females</span> also faced downward trends, with <span class="color-blue">males</span>' life expectancy dipping from <span class="highlight">72.3 years</span> in <span class="highlight">2019–2020</span> to <span class="highlight">71.0 years</span> by <span class="highlight">2022</span>, and <span class="color-red">females</span> following a similar pattern. Conversely, <span class="italic">non-citizens</span> displayed more resilience, especially <span class="color-blue">males</span> who reached a high of <span class="highlight">80.2 years</span> in <span class="highlight">2020</span>, though this fell to <span class="highlight">76.4 years</span> in <span class="highlight">2022</span>, while <span class="color-red">females</span> also showed fluctuations but maintained a comparatively higher life expectancy.</p>
                     </div>
                 </div>
             </div>
@@ -137,11 +153,11 @@
         <div class="container story-section">
             <div class="story-title">Sex and State Dynamics</div>
             <div class="story-content">
-                <p>Across the country, <span class="emphasis">females</span> consistently enjoyed higher life expectancies than <span class="emphasis">males</span>, a trend that holds true in every state. For instance, <span class="emphasis">Kuala Lumpur's women</span> led the pack with a remarkable <span class="highlight">79.0 years</span> in <span class="highlight">2016</span>, though this figure slipped to <span class="highlight">76.6 years</span> by <span class="highlight">2022</span>. This decline mirrors a broader national trend, where life expectancy for females decreased in many states, such as <span class="emphasis">Johor</span>, which fell from <span class="highlight">76.9 years</span> in <span class="highlight">2016</span> to <span class="highlight">75.4 years</span> in <span class="highlight">2022</span>.</p>
+                <p><span class="first-cap">A</span>cross the country, <span class="color-red">females</span> consistently enjoyed higher life expectancies than <span class="color-blue">males</span>, a trend that holds true in every state. For instance, <span class="italic">Kuala Lumpur</span>'s <span class="color-red">women</span> led the pack with a remarkable <span class="highlight">79.0 years</span> in <span class="highlight">2016</span>, though this figure slipped to <span class="highlight">76.6 years</span> by <span class="highlight">2022</span>. This decline mirrors a broader national trend, where life expectancy for <span class="color-red">females</span> decreased in many states, such as <span class="italic">Johor</span>, which fell from <span class="highlight">76.9 years</span> in <span class="highlight">2016</span> to <span class="highlight">75.4 years</span> in <span class="highlight">2022</span>.</p>
 
-                <p><span class="emphasis">Males</span>, too, experienced varying fortunes across the states. While <span class="emphasis">Sarawak men</span> had a relatively high life expectancy of <span class="highlight">74.5 years</span> in <span class="highlight">2016</span>, they saw a decline to <span class="highlight">72.1 years</span> by <span class="highlight">2022</span>. Meanwhile, <span class="emphasis">Kedah</span> faced significant challenges, with <span class="emphasis">male</span> life expectancy dropping from <span class="highlight">70.2 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.6 years</span> in <span class="highlight">2022</span>, signaling troubling health trends in the state.</p>
+                <p><span class="color-blue">Males</span>, too, experienced varying fortunes across the states. While <span class="italic">Sarawak</span> <span class="color-blue">men</span> had a relatively high life expectancy of <span class="highlight">74.5 years</span> in <span class="highlight">2016</span>, they saw a decline to <span class="highlight">72.1 years</span> by <span class="highlight">2022</span>. Meanwhile, <span class="italic">Kedah</span> faced significant challenges, with <span class="color-blue">male</span> life expectancy dropping from <span class="highlight">70.2 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.6 years</span> in <span class="highlight">2022</span>, signaling troubling health trends in the state.</p>
 
-                <p>Despite the overall higher life expectancy for females, the data reveals a concerning pattern of decline across many states. The <span class="emphasis">Pahang</span> and <span class="emphasis">Kelantan</span> regions saw similar trends, with <span class="emphasis">both genders</span> reporting reductions in life expectancy. Notably, the steady decline in states like <span class="emphasis">Kelantan</span>—where <span>males</span> dropped from <span class="highlight">69.0 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.7 years</span> in <span class="highlight">2022</span>—highlights the urgent need for targeted health initiatives.</p>
+                <p>Despite the overall higher life expectancy for females, the data reveals a concerning pattern of decline across many states. The <span class="italic">Pahang</span> and <span class="italic">Kelantan</span> regions saw similar trends, with <span class="color-red">both</span> <span class="color-blue">genders</span> reporting reductions in life expectancy. Notably, the steady decline in states like <span class="italic">Kelantan</span>—where <span class="color-blue">males</span> dropped from <span class="highlight">69.0 years</span> in <span class="highlight">2016</span> to <span class="highlight">68.7 years</span> in <span class="highlight">2022</span>—highlights the urgent need for targeted health initiatives.</p>
             </div>
         </div>
 
@@ -151,11 +167,9 @@
         </div>
 
         <!-- Footer -->
-        <footer style="font-size: 14px;">
-        <p>Data Source: <a href="https://newss.statistics.gov.my/newss-portalx/ep/epFreeDownloadContentSearch.seam?contentId=169759&actionMethod=ep%2FepFreeDownloadContentSearch.xhtml%3AcontentAction.doDisplayContent&cid=76041" target="_blank">
-            Malaysia’s Department of Statistics
-        </a></p>
-    </footer>
+        <footer style="font-size: 14px">
+            <p>Data Source: <a href="https://newss.statistics.gov.my/newss-portalx/ep/epFreeDownloadContentSearch.seam?contentId=169759&actionMethod=ep%2FepFreeDownloadContentSearch.xhtml%3AcontentAction.doDisplayContent&cid=76041" target="_blank"> Malaysia’s Department of Statistics </a></p>
+        </footer>
     </body>
 
     <script src="vega_lite_vis.js"></script>
