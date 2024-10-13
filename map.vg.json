@@ -61,12 +61,26 @@
             "as": "centroid"
         },
         {
-            "calculate": "datum.centroid[0] + 0.03",
+            "calculate": "datum.centroid[0]",
             "as": "centroidX"
+        },
+        {
+            "calculate": "datum.centroid[1]",
+            "as": "centroidY"
+        },
+        {
+            "calculate": "((datum['LIFE EXPECTANCY'] - 70) / (80 - 70)) * 100",
+            "as": "normalized_life_expectancy_percentage"
         }
     ],
     "projection": {
         "type": "mercator"
+    },
+    "padding": {
+        "top": 40,
+        "right": 40,
+        "bottom": 40,
+        "left": 40
     },
     "layer": [
         {
@@ -75,12 +89,12 @@
             },
             "encoding": {
                 "color": {
-                    "field": "LIFE EXPECTANCY",
+                    "field": "normalized_life_expectancy_percentage",
                     "type": "quantitative",
                     "scale": {
                         "domain": [
-                            70,
-                            80
+                            0,
+                            100
                         ],
                         "range": [
                             "#add8e6",
@@ -88,7 +102,7 @@
                         ]
                     },
                     "legend": {
-                        "title": "Life Expectancy"
+                        "title": "Life Expectancy (%)"
                     }
                 },
                 "tooltip": [
@@ -97,8 +111,9 @@
                         "title": "State"
                     },
                     {
-                        "field": "LIFE EXPECTANCY",
-                        "title": "Life Expectancy"
+                        "field": "normalized_life_expectancy_percentage",
+                        "title": "Life Expectancy (%)",
+                        "format": ".2f"
                     },
                     {
                         "field": "YEAR",
@@ -108,24 +123,43 @@
             }
         },
         {
+            "transform": [
+                {
+                    "calculate": "datum.properties.Name === 'Penang' ? datum.centroidX - 0.58 : datum.properties.Name === 'Perlis' ? datum.centroidX - 0.4 : datum.properties.Name === 'Perak' ? datum.centroidX - 0.15 : datum.properties.Name === 'Selangor' ? datum.centroidX - 0.1 : datum.properties.Name === 'Kuala Lumpur' ? datum.centroidX - 0.5 : datum.properties.Name === 'Putrajaya' ? datum.centroidX - 0.5 : datum.properties.Name === 'Labuan' ? datum.centroidX - 0.35 : datum.centroidX",
+                    "as": "adjustedCentroidX"
+                },
+                {
+                    "calculate": "datum.properties.Name === 'Penang' ? datum.centroidY + 0.03 : datum.properties.Name === 'Selangor' ? datum.centroidY + 0.1 : datum.properties.Name === 'Negeri Sembilan' ? datum.centroidY - 0.03 : datum.properties.Name === 'Melaka' ? datum.centroidY + 0.03 : datum.centroidY",
+                    "as": "adjustedCentroidY"
+                }
+            ],
             "mark": {
                 "type": "text",
                 "align": "center",
                 "baseline": "middle",
-                "color": "#333333"
+                "color": "#333333",
+                "fontWeight": "bold",
+                "fontSize" : 9
             },
             "encoding": {
                 "longitude": {
-                    "field": "centroidX"
+                    "field": "adjustedCentroidX"
                 },
                 "latitude": {
-                    "field": "centroid[1]"
+                    "field": "adjustedCentroidY"
                 },
                 "text": {
+                    "condition": [
+                        {
+                            "test": "datum.properties.Name === 'Kuala Lumpur'",
+                            "value": "K.Lumpur"
+                        },
+                        {
+                            "test": "datum.properties.Name === 'Negeri Sembilan'",
+                            "value": "N.Sembilan"
+                        }
+                    ],
                     "field": "properties.Name"
-                },
-                "fontSize": {
-                    "signal": "clamp(5, width / 50, 20)"
                 }
             }
         }

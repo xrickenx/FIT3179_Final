@@ -6,7 +6,7 @@
         "anchor": "middle"
     },
     "width": 400,
-    "height": 400,
+    "height": 500,
     "data": {
         "url": "https://gist.githubusercontent.com/xrickenx/d03c609c168cdaebe321a8878c1396a5/raw/be4e70ed64002e400f2e484238b1f5fcfcefca9b/live_expectancy_by_sex_ethnic.csv",
         "format": {
