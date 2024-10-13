@@ -56,7 +56,7 @@
         "color": {
             "field": "avg_life_expectancy",
             "type": "quantitative",
-            "title": " Life Exp.",
+            "title": "Avg Life Exp.",
             "scale": {
                 "domain": [
                     70,

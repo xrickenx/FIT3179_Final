@@ -27,8 +27,9 @@
             h1 {
                 margin: 0;
                 padding-top: 10px;
-                font-size: 22px;
+                font-size: 30px;
                 text-align: center;
+                font-weight: bold;
             }
 
             .subheading {
@@ -106,7 +107,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <div class="chart" id="heat_map_chart"></div>
+                    <div class="chart" id="heat_map_chart" style="margin-top: 12px;"></div>
                 </div>
                 <div class="col-md-5 story-section">
                     <div class="story-title">Demographic Insights</div>
@@ -148,6 +149,13 @@
             <div class="chart" id="bar_chart0"></div>
             <div class="chart" id="bar_chart1"></div>
         </div>
+
+        <!-- Footer -->
+        <footer style="font-size: 14px;">
+        <p>Data Source: <a href="https://newss.statistics.gov.my/newss-portalx/ep/epFreeDownloadContentSearch.seam?contentId=169759&actionMethod=ep%2FepFreeDownloadContentSearch.xhtml%3AcontentAction.doDisplayContent&cid=76041" target="_blank">
+            Malaysia’s Department of Statistics
+        </a></p>
+    </footer>
     </body>
 
     <script src="vega_lite_vis.js"></script>
